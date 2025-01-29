@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <script src="../jquery_file/jquery-3.7.1.min.js"></script>
+        <title>JQuery Topics</title>
+    </head>
+    <body>
+        <div id="demo"></div>
+        <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium
+            eum officia dolore veritatis mollitia libero quos quas expedita
+            illum id. Neque tenetur dolorum error quos consequatur. Numquam
+            neque dolore distinctio! Lorem ipsum dolor sit amet, consectetur
+            adipisicing elit. Laudantium eum officia dolore veritatis mollitia
+            libero quos quas expedita illum id. Neque tenetur dolorum error quos
+            consequatur. Numquam neque dolore distinctio! Lorem ipsum dolor sit
+            amet, consectetur adipisicing elit. Laudantium eum officia dolore
+            veritatis mollitia libero quos quas expedita illum id. Neque tenetur
+            dolorum error quos consequatur. Numquam neque dolore distinctio!
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium
+            eum officia dolore veritatis mollitia libero quos quas expedita
+            illum id. Neque tenetur dolorum error quos consequatur. Numquam
+            neque dolore distinctio!
+        </p>
+        <button onclick="changeFonts(this)">Click</button>
+        <button id="change" onclick="changeSome()">Change</button>
+        <script>
+            //document.getElementById("demo").innerText="Hello";
+            $("#demo").text("Hii");
+            function changeFonts(event) {
+                event.style.fontFamily = "'Trebuchet MS', sans-serif";
+                //$(event).css("font-family", "'Trebuchet MS', sans-serif");
+            }
+            function changeSome() {
+                $("p").hide();
+            }
+
+            $("button#change").click(function () {
+                $("p").hide();
+            });
+        </script>
+    </body>
+</html>
