@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            .siblings * {
+                display: block;
+                border: 2px solid lightgrey;
+                color: lightgrey;
+                padding: 5px;
+                margin: 15px;
+            }
+        </style>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    </head>
+    <body class="siblings">
+        <div>
+            div (parent)
+            <p>p</p>
+            <span>span</span>
+            <h2>h2</h2>
+            <h3>h3</h3>
+            <h4>h4</h4>
+            <h5>h5</h5>
+            <h6>h6</h6>
+            <p>p</p>
+        </div>
+        <script>
+            /* $("h2").siblings().css({ color: "red", border: "2px solid red" }); */
+            /* $("h2").next().css({"color": "red", "border": "2px solid red"}); */
+            /* $("h2").nextAll().css({"color": "red", "border": "2px solid red"}); */
+            /* $("h2").nextUntil("h6").css({"color": "red", "border": "2px solid red"}); */
+            /* $("h2").prev().css({"color": "red", "border": "2px solid red"}); */
+            /* $("h6").prevAll().css({"color": "red", "border": "2px solid red"}); */
+            /* $("h2").prevUntil("div").css({"color": "red", "border": "2px solid red"}); */
+        </script>
+    </body>
+</html>
