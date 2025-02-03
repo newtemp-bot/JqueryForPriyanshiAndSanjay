@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <style>
+            #div1 {
+                height: 800px;
+                width: 800px;
+                padding: 10px;
+                margin: 3px;
+                border: 1px solid blue;
+                background-color: lightblue;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="div1"></div>
+        <br />
+
+        <button>Display dimensions of div</button>
+
+        <p>width() - returns the width of an element.</p>
+        <p>height() - returns the height of an element.</p>
+        <script>
+            $("button").click(function () {
+                var txt = "";
+                txt += "Width of div: " + $("#div1").width() + "</br>";
+                txt += "Height of div: " + $("#div1").height() + "</br>";
+                txt +=
+                    "Inner width of div: " + $("#div1").innerWidth() + "</br>";
+                txt +=
+                    "Inner height of div: " +
+                    $("#div1").innerHeight() +
+                    "</br>";
+                txt +=
+                    "Outer width of div: " + $("#div1").outerWidth() + "</br>";
+                txt +=
+                    "Outer height of div: " +
+                    $("#div1").outerHeight() +
+                    "</br>";
+                txt +=
+                    "Outer width of div (margin included): " +
+                    $("#div1").outerWidth(true) +
+                    "</br>";
+                txt +=
+                    "Outer height of div (margin included): " +
+                    $("#div1").outerHeight(true);
+                $("#div1").html(txt);
+            });
+            $("button").click(function () {
+                var txt = "";
+                txt += "Document width/height: " + $(document).width();
+                txt += "x" + $(document).height() + "\n";
+                txt += "Window width/height: " + $(window).width();
+                txt += "x" + $(window).height();
+                alert(txt);
+            });
+            $("button").click(function () {
+                $("#div1").width(500).height(500);
+            });
+        </script>
+    </body>
+</html>

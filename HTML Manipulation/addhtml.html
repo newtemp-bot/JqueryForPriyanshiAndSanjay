@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    </head>
+    <body>
+        <p>This is a paragraph.</p>
+        <p>This is another paragraph.</p>
+
+        <ol>
+            <li>List item 1</li>
+            <li>List item 2</li>
+            <li>List item 3</li>
+        </ol>
+        <img src="w3jquery.gif" alt="jQuery" width="100" height="140"><br><br>
+        <button id="btn1">Append/prepend text</button>
+        <button id="btn2">Append/prepend list items</button>
+        <script>
+            $("#btn1").click(function () {
+                $("p").append(" <b>Appended text</b>.");
+            });
+
+            $("#btn2").click(function () {
+                $("ol").append("<li>Appended item</li>");
+            });
+            $("#btn1").click(function () {
+                $("p").prepend("<b>Prepended text</b>. ");
+            });
+            $("#btn2").click(function () {
+                $("ol").prepend("<li>Prepended item</li>");
+            });
+            $("#btn1").click(function () {
+                $("img").before("<b>Before</b>");
+            });
+
+            $("#btn2").click(function () {
+                $("img").after("<i>After</i>");
+            });
+        </script>
+    </body>
+</html>
