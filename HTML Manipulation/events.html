@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>HTML Manipulation</title>
+        <script src="../jquery_file/jquery-3.7.1.min.js"></script>
+    </head>
+    <body>
+        <div id="demo">Hello</div>
+        <div id="change">Hii</div>
+        <div id="change">kem cho?</div>
+        <div>majama</div>
+        <script>
+            /* $("#demo").click(function () {
+                $(this).hide();
+            }); */
+            $("div").dblclick(function () {
+                $(this).css({ color: "red" });
+            });
+            $("#demo").on({
+                mouseenter: function () {
+                    $(this).css("background-color", "lightgray");
+                },
+                mouseleave: function () {
+                    $(this).css("background-color", "lightblue");
+                },
+                click: function () {
+                    $(this).css("background-color", "yellow");
+                },
+            });
+
+        </script>
+    </body>
+</html>

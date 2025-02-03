@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Get HTML</title>
+        <script src="../jquery_file/jquery-3.7.1.min.js"></script>
+    </head>
+    <body>
+        <div>Hello <b>How</b> are you?</div>
+        <p>Name: <input type="text" id="test" /></p>
+
+        <button id="val">Show Value</button>
+        <p><a href="https://www.w3schools.com" id="w3s">W3Schools.com</a></p>
+
+        <button id="attr">Show href Value</button>
+        <script>
+            $("div").click(function () {
+                alert($(this).text());
+                alert($(this).html());
+            });
+            $("#val").click(function () {
+                alert("Value: " + $("#test").val());
+            });
+            $("#attr").click(function () {
+                alert($("w3s").attr("type"));
+            });
+        </script>
+    </body>
+</html>

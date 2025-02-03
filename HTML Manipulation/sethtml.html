@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="../jquery_file/jquery-3.7.1.min.js"></script>
+    </head>
+    <body>
+        <p id="test1">This is a paragraph.</p>
+        <p id="test2">This is another paragraph.</p>
+
+        <p>
+            Input field: <input type="text" id="test3" value="Mickey Mouse" />
+        </p>
+
+        <button id="btn1">Set Text</button>
+        <button id="btn2">Set HTML</button>
+        <button id="btn3">Set Value</button>
+        <p>
+            <a href="https://www.w3schools.com" title="Hello" id="w3s"
+                >W3Schools.com</a
+            >
+        </p>
+
+        <button id="attr">Show href Value</button>
+        <script>
+            $("#btn1").click(function () {
+                $("#test1").text("Hello world!");
+            });
+            $("#btn2").click(function () {
+                $("#test2").html("<b>Hello world!</b>");
+            });
+            $("#btn3").click(function () {
+                $("#test3").val("Dolly Duck");
+            });
+            /* $("#attr").click(function () {
+                $("#w3s").attr({
+                    href: "https://www.w3schools.com/jquery/",
+                    title: "W3Schools jQuery Tutorial",
+                });
+            }); */
+            $("#attr").click(function () {
+                $("#w3s").attr("href", function (i, origValue) {
+                    x++;
+                    if (x <= 1) return origValue + "/jquery/";
+                });
+            });
+        </script>
+    </body>
+</html>
