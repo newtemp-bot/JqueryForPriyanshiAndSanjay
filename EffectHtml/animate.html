@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Animate Background Color</title>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+        <style>
+            #box {
+                width: 200px;
+                height: 200px;
+                background-color: blue;
+                text-align: center;
+                line-height: 200px;
+                color: white;
+                font-size: 20px;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="box">Click Me</div>
+
+        <script>
+            $(document).ready(function () {
+                /* $("#box").click(function() {
+                $(this).animate({
+                    backgroundColor: "red"
+                }, 1000);
+            }); */
+                /* $("#box").click(function () {
+                    $(this).animate({
+                        left: "250px",
+                        height: "+=150px",
+                        width: "+=150px",
+                    });
+                }); */
+                /* $("#box").click(function () {
+                    $(this).animate({
+                        height: "hide",
+                    });
+                }); */
+                $("#box").click(function () {
+                    var div = $(this);
+                    div.animate({ height: "300px", opacity: "0.4" }, "slow");
+                    div.animate({ width: "300px", opacity: "0.8" }, "slow");
+                    div.animate({ height: "100px", opacity: "0.4" }, "slow");
+                    div.animate({ width: "100px", opacity: "0.8" }, "slow");
+                });
+            });
+        </script>
+    </body>
+</html>

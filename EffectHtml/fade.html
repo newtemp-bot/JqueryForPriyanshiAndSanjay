@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <script src="../jquery_file/jquery-3.7.1.min.js"></script>
+        <title>Fade</title>
+        <style>
+            div {
+                display: none;
+            }
+            #div3 ~ div{
+                display: block;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="div1">div1</div>
+        <div id="div2">div2</div>
+        <div id="div3">div3</div>
+        <div
+            id="divbox1"
+            style="width: 80px; height: 80px; background-color: red"
+        ></div>
+        <br />
+        <div
+            id="divbox2"
+            style="width: 80px; height: 80px; background-color: green"
+        ></div>
+        <br />
+        <div
+            id="divbox3"
+            style="width: 80px; height: 80px; background-color: blue"
+        ></div>
+        <button id="fadein">click fade in</button>
+        <button id="fadeout">click fade out</button>
+        <button id="toggle">click toggle</button>
+        <button id="fadeto">click fade to</button>
+        <script>
+            $("#fadein").click(function () {
+                $("#div1").fadeIn();
+                $("#div2").fadeIn("slow");
+                $("#div3").fadeIn(3000);
+            });
+            $("#fadeout").click(function () {
+                $("#div1").fadeOut();
+                $("#div2").fadeOut("slow");
+                $("#div3").fadeOut(3000);
+            });
+            $("#toggle").click(function () {
+                $("#div1").fadeToggle();
+                $("#div2").fadeToggle("slow");
+                $("#div3").fadeToggle(3000);
+            });
+            $("#fadeto").click(function () {
+                $("#divbox1").fadeTo("slow", 0.15);
+                $("#divbox2").fadeTo("slow", 0.4);
+                $("#divbox3").fadeTo("slow", 0.7);
+            });
+        </script>
+    </body>
+</html>
