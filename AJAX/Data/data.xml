@@ -1,0 +1,17 @@
+<rows>
+    <row>
+        <id>1</id>
+        <name>John Doe</name>
+        <email>john@example.com</email>
+    </row>
+    <row>
+        <id>2</id>
+        <name>Jane Smith</name>
+        <email>jane@example.com</email>
+    </row>
+    <row>
+        <id>3</id>
+        <name>Sam Brown</name>
+        <email>sam@example.com</email>
+    </row>
+</rows>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Show Data</title>
+        <script src="../jquery_file/jquery-3.7.1.min.js"></script>
+    </head>
+    <body onload="getDataHTML()">
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                </tr>
+            </thead>
+            <tbody id="data"></tbody>
+        </table>
+        <script>
+            let getDataHTML = () => {
+                /* $("#data").load(
+                    "data/data.html",
+                    function (responseTxt, statusTxt, xhr) {
+                        if (statusTxt == "success")
+                            alert("External content loaded successfully!");
+                        if (statusTxt == "error")
+                            alert(
+                                "Error: " + xhr.status + ": " + xhr.statusText
+                            );
+                    }
+                );*/
+                /* $.ajax({
+                    url: "data/data.html",
+                    type: "GET",
+                    success: function (responseTxt, statusTxt, xhr) {
+                        if (statusTxt == "success") {
+                            $("#data").html(responseTxt);
+                            alert("External content loaded successfully!");
+                        }
+                        if (statusTxt == "error")
+                            alert(
+                                "Error: " + xhr.status + ": " + xhr.statusText
+                            );
+                    },
+                });  */
+                /* $.get("data/data.txt", function (responseTxt, statusTxt, xhr) {
+                    if (statusTxt == "success") {
+                        let rows = responseTxt.split("\n");
+                        console.log(rows);
+                        
+                        let html = "";
+                        rows.forEach((row) => {
+                            let columns = row.split(",");
+                            console.log(columns);
+                            html += "<tr>";
+                            columns.forEach((column) => {
+                                html += `<td>${column.trim()}</td>`;
+                            });
+                            html += "</tr>";
+                        });
+                        $("#data").html(html);
+                        alert("External content loaded successfully!");
+                    }
+                    if (statusTxt == "error")
+                        alert("Error: " + xhr.status + ": " + xhr.statusText);
+                }); */
+                /* $("#data").load("data/data.xml");
+                $("#data").load("data/data.json"); */
+                /* $.get("data/data.xml", function (data, statusTxt, xhr) {
+                    if (statusTxt == "success") {
+                        let html = "";
+                        $(data)
+                            .find("row")
+                            .each(function () {
+                                let id = $(this).find("id").text();
+                                let name = $(this).find("name").text();
+                                let email = $(this).find("email").text();
+                                html += `<tr><td>${id}</td><td>${name}</td><td>${email}</td></tr>`;
+                            });
+                        $("#data").html(html);
+                        alert("External content loaded successfully!");
+                    }
+                    if (statusTxt == "error")
+                        alert("Error: " + xhr.status + ": " + xhr.statusText);
+                }); */
+                $.get("data/data.json", function (data, statusTxt, xhr) {
+                    if (statusTxt == "success") {
+                        let html = "";
+                        $(data)
+                            .find("row")
+                            .each(function () {
+                                let id = $(this).find("id").text();
+                                let name = $(this).find("name").text();
+                                let email = $(this).find("email").text();
+                                html += `<tr><td>${id}</td><td>${name}</td><td>${email}</td></tr>`;
+                            });
+                        $("#data").html(html);
+                        alert("External content loaded successfully!");
+                    }
+                    if (statusTxt == "error")
+                        alert("Error: " + xhr.status + ": " + xhr.statusText);
+                });
+            };
+        </script>
+    </body>
+</html>

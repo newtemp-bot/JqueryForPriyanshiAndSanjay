@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post Data</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <h1>Submit Your Data</h1>
+    <form id="dataForm">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+        <br>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+        <br>
+        <button type="submit">Submit</button>
+    </form>
+
+    <script>
+        $(document).ready(function() {
+            $('#dataForm').on('submit', function(event) {
+                event.preventDefault();
+                var formData = {
+                    name: $('#name').val(),
+                    email: $('#email').val()
+                };
+                $.ajax({
+                    type: 'POST',
+                    url: '/submit',
+                    data: formData,
+                    success: function(response) {
+                        sessionStorage.setItem('name', formData.name);
+                        sessionStorage.setItem('email', formData.email);
+                        window.location.href = 'welcome.html';
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
