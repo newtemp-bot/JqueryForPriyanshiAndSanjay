@@ -1,0 +1,40 @@
+{
+    "Toyota": {
+      "Sedan": {
+        "Camry": {
+          "LE": "Camry LE - 2.5L 4-Cylinder, 203 HP",
+          "SE": "Camry SE - 2.5L 4-Cylinder, 206 HP",
+          "XLE": "Camry XLE - 3.5L V6, 301 HP"
+        },
+        "Corolla": "Corolla - Compact Sedan"
+      },
+      "SUV": {
+        "RAV4": {
+          "LE": "RAV4 LE - 2.5L 4-Cylinder, 203 HP",
+          "XLE": "RAV4 XLE - 2.5L 4-Cylinder, 203 HP",
+          "Limited": "RAV4 Limited - 2.5L 4-Cylinder, 203 HP"
+        },
+        "Highlander": "Highlander - Midsize SUV"
+      }
+    },
+    "Honda": {
+      "Sedan": {
+        "Accord": {
+          "LX": "Accord LX - 1.5L Turbo 4-Cylinder, 192 HP",
+          "Sport": "Accord Sport - 1.5L Turbo 4-Cylinder, 192 HP",
+          "EX-L": "Accord EX-L - 2.0L Turbo 4-Cylinder, 252 HP"
+        },
+        "Civic": "Civic - Compact Sedan"
+      },
+      "SUV": {
+        "CR-V": "CR-V - 1.5L Turbo 4-Cylinder, 190 HP",
+        "Pilot": {
+          "LX": "Pilot LX - 3.5L V6, 280 HP",
+          "EX": "Pilot EX - 3.5L V6, 280 HP",
+          "Touring": "Pilot Touring - 3.5L V6, 280 HP"
+        }
+      }
+    },
+    "Mazda": "Mazda - Compact Car"
+  }
+  

@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Flat Accordion with Level Controls</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    /* Global Styles */
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #f4f4f4;
+      margin: 20px;
+    }
+    .controls {
+      margin-bottom: 20px;
+      text-align: center;
+    }
+    .controls input {
+      width: 100px;
+      padding: 6px;
+      margin-right: 10px;
+    }
+    .controls button {
+      padding: 6px 12px;
+      margin-right: 10px;
+      cursor: pointer;
+      border: 1px solid #6a0dad;
+      background: #fff;
+      color: #6a0dad;
+      border-radius: 4px;
+      transition: background 0.3s ease;
+    }
+    .controls button:hover {
+      background: #f3e5f5;
+    }
+    #error-message {
+      color: red;
+      margin-top: 10px;
+      height: 18px;
+    }
+    .accordion-container {
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    /* Accordion Item */
+    .accordion-item {
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      overflow: hidden;
+      margin-bottom: 15px;
+      background: #fff;
+    }
+    /* Accordion Header */
+    .accordion-header {
+      padding: 15px 20px;
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    .accordion-header:hover {
+      background: #f9f9f9;
+    }
+    .accordion-header:focus {
+      outline: none;
+      background: #e6d4f0;
+      box-shadow: 0 0 0 3px rgba(106, 13, 173, 0.5);
+    }
+    .accordion-header.active {
+      background: #f3e5f5;
+      color: #6a0dad;
+    }
+    /* Animated Plus/Minus Icon */
+    .accordion-icon {
+      display: inline-block;
+      width: 16px;
+      height: 16px;
+      position: relative;
+      margin-right: 15px;
+    }
+    .accordion-icon .bar {
+      position: absolute;
+      width: 100%;
+      height: 2px;
+      background: #6a0dad;
+      transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+    }
+    /* Horizontal bar always visible */
+    .accordion-icon .horizontal {
+      top: 50%;
+      left: 0;
+      transform: translateY(-50%);
+    }
+    /* Vertical bar to form a plus sign */
+    .accordion-icon .vertical {
+      width: 2px;
+      height: 14px;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+    }
+    /* When active, animate vertical bar to disappear (minus sign) */
+    .accordion-header.active .vertical {
+      transform: translate(-50%, -50%) scaleX(0);
+      opacity: 0;
+    }
+    .accordion-title {
+      flex-grow: 1;
+    }
+    /* Accordion Panel */
+    .accordion-panel {
+      display: none;
+      padding: 15px 20px;
+      background: #fff;
+      border-top: 1px solid #6a0dad;
+      color: #444;
+    }
+  </style>
+</head>
+<body>
+  <!-- Control Buttons for Level-Based Collapse/Expand -->
+  <div class="controls">
+    <input type="number" id="level-input" min="1" placeholder="Enter level">
+    <button id="collapse-btn">Collapse</button>
+    <button id="expand-btn">Expand</button>
+    <div id="error-message"></div>
+  </div>
+
+  <div class="accordion-container" id="accordion-container">
+    <!-- Accordion items will be injected here dynamically -->
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+    $(document).ready(function(){
+      // Recursive function that builds the accordion and assigns a data-level attribute.
+      function createAccordion(data, container, level = 1) {
+        for (var key in data) {
+          var item = $('<div class="accordion-item"></div>');
+          var header = $('<div class="accordion-header" role="button" tabindex="0" aria-expanded="false"></div>');
+          header.attr('data-level', level);
+          var icon = $('<span class="accordion-icon"><span class="bar horizontal"></span><span class="bar vertical"></span></span>');
+          var title = $('<span class="accordion-title"></span>').text(key);
+          header.append(icon).append(title);
+          var panel = $('<div class="accordion-panel"></div>');
+          if (typeof data[key] === 'object') {
+            createAccordion(data[key], panel, level + 1);
+          } else {
+            panel.text(data[key]);
+          }
+          item.append(header).append(panel);
+          container.append(item);
+        }
+      }
+      
+      // Helper function: Expands all ancestor headers so that the given header becomes visible.
+      function expandAncestors($header) {
+        $header.parents('.accordion-panel').each(function(){
+          var $parentHeader = $(this).prev('.accordion-header');
+          if (!$parentHeader.hasClass('active')) {
+            $parentHeader.addClass('active').attr('aria-expanded', true);
+            $parentHeader.next('.accordion-panel').stop(true, true).slideDown();
+          }
+        });
+      }
+      
+      // Load JSON data and build the accordion.
+      $.getJSON('data.json', function(data) {
+        createAccordion(data, $('#accordion-container'));
+        
+        // Toggle individual accordion headers on click.
+        $('.accordion-header').click(function() {
+          $(this).toggleClass('active');
+          $(this).attr('aria-expanded', $(this).hasClass('active'));
+          $(this).next('.accordion-panel').stop(true, true).slideToggle();
+        });
+        
+        // Enable keyboard activation (Enter or Space) for accessibility.
+        $('.accordion-header').keydown(function(e) {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            $(this).click();
+          }
+        });
+      });
+      
+      // Function to collapse headers.
+      function collapseHeaders($headers) {
+        $headers.each(function(){
+          if ($(this).hasClass('active')) {
+            $(this).removeClass('active').attr('aria-expanded', false);
+            $(this).next('.accordion-panel').stop(true, true).slideUp();
+          }
+        });
+      }
+      
+      // Function to expand headers.
+      function expandHeaders($headers) {
+        $headers.each(function(){
+          // Expand ancestors first so the header is visible.
+          expandAncestors($(this));
+          if (!$(this).hasClass('active')) {
+            $(this).addClass('active').attr('aria-expanded', true);
+            $(this).next('.accordion-panel').stop(true, true).slideDown();
+          }
+        });
+      }
+      
+      // Collapse button handler.
+      $('#collapse-btn').click(function(){
+        $('#error-message').text('');
+        var level = $('#level-input').val();
+        var $headers;
+        if (!level) {
+          // Collapse all headers if no level specified.
+          $headers = $('.accordion-header');
+        } else {
+          $headers = $('.accordion-header[data-level="' + level + '"]');
+          if ($headers.length === 0) {
+            $('#error-message').text('No items found for level ' + level);
+            return;
+          }
+        }
+        collapseHeaders($headers);
+      });
+      
+      // Expand button handler.
+      $('#expand-btn').click(function(){
+        $('#error-message').text('');
+        var level = $('#level-input').val();
+        var $headers;
+        if (!level) {
+          // Expand all headers if no level specified.
+          $headers = $('.accordion-header');
+        } else {
+          $headers = $('.accordion-header[data-level="' + level + '"]');
+          if ($headers.length === 0) {
+            $('#error-message').text('No items found for level ' + level);
+            return;
+          }
+        }
+        expandHeaders($headers);
+      });
+    });
+  </script>
+</body>
+</html>
